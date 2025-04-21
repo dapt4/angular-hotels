@@ -1,4 +1,21 @@
 <header>
-  <img src="src/assets/logo.png" alt="logo">
-header
+  <div class="header-logo">
+    <img src="assets/logo.png" alt="logo" />
+  </div>
+  <div class="header-finder">
+    <input type="text" (input)="find()" />
+  </div>
+  <div class="header-category">
+    <input type="checkbox" />
+    <input type="checkbox" />
+    <input type="checkbox" />
+    <input type="checkbox" />
+    <input type="checkbox" />
+  </div>
+  <div class="header-rating">
+    <input type="range" min="0" max="5" />
+  </div>
+  <div class="header-price">
+    <input type="range" min="50" max="1000" />
+  </div>
 </header>
