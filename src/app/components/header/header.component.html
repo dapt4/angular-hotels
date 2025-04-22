@@ -1,21 +1,28 @@
 <header>
   <div class="header-logo">
-    <img src="assets/logo.png" alt="logo" />
+    <img src="assets/logoo.svg" alt="logo" />
   </div>
   <div class="header-finder">
-    <input type="text" (input)="find()" />
+    <input type="text" [(ngModel)]="searchBody.name" (input)="onSearch()"  placeholder="Buscar por nombre" />
   </div>
   <div class="header-category">
-    <input type="checkbox" />
-    <input type="checkbox" />
-    <input type="checkbox" />
-    <input type="checkbox" />
-    <input type="checkbox" />
+    <input type="checkbox" [(ngModel)]="searchBody.category[0]" />
+    <input type="checkbox" [(ngModel)]="searchBody.category[1]" />
+    <input type="checkbox" [(ngModel)]="searchBody.category[2]" />
+    <input type="checkbox" [(ngModel)]="searchBody.category[3]" />
+    <input type="checkbox" [(ngModel)]="searchBody.category[4]" />
   </div>
   <div class="header-rating">
-    <input type="range" min="0" max="5" />
+    <input type="range" min="0" max="5" [(ngModel)]="searchBody.rating" />
+    <span>{{searchBody.rating}}</span>
   </div>
   <div class="header-price">
-    <input type="range" min="50" max="1000" />
+    <input type="range" min="50" max="1000" [(ngModel)]="searchBody.price" />
+    <span>{{searchBody.price}}</span>
   </div>
+  <pre>
+    {{
+      searchBody | json
+    }}
+  </pre>
 </header>

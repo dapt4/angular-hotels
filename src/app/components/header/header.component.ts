@@ -1,29 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { JsonPipe } from '@angular/common';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { SearchBody } from '@root/app/types/searchBody.type';
 import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [JsonPipe, FormsModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
-
-  private searchTerms: Subject<string> = new Subject<string>();
+  @Output() eventEmiter = new EventEmitter<SearchBody>();
+  public searchTerms = new Subject<string>();
+  public searchBody: SearchBody = {
+    name: '',
+    category: [false, false, true, false, false],
+    rating: 3,
+    price: 200
+  }
 
   ngOnInit() {
     this.searchTerms.pipe(
-      debounceTime(300),
+      debounceTime(400),
       distinctUntilChanged()
     ).subscribe((term: string) => {
-      this.find(term);
+      this.searchBody.name = term
+      this.sendFilters();
     });
   }
 
-  public find(term: string): void {
-    console.log(term)
-    console.log('find')
+  public onSearch(){
+    this.searchTerms.next(this.searchBody.name);
   }
+
+  public sendFilters() {
+    this.eventEmiter.emit(this.searchBody);
+  }
+
 }
 
