@@ -13,7 +13,8 @@ import { SearchBody } from '@root/app/types/searchBody.type';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-  public hotels: Hotel[] = []
+  private hotels: Hotel[] = []
+  public filteredHotels: Hotel[] = []
 
   ngOnInit(): void {
     this.getData()
@@ -24,14 +25,32 @@ export class HomeComponent implements OnInit {
       const url = "http://localhost:3000/hotels"
       const res = await fetch(url)
       this.hotels = await res.json()
+      this.filteredHotels = this.hotels
     } catch (err) {
       //console.error(err) // depende de la politica de la empresa se permite o no mostrar los errores del lado del cliente
       console.log('Hubo un error interno')
     }
   }
 
-  public handleMessage(event: SearchBody) {
-    console.log(event)
+  public filterHotels(searchBody: SearchBody) {
     // hago filtro y lo guardo en una propiedad
+    this.filteredHotels = this.hotels.filter((hotel) => {
+      if (this.isAMatch(searchBody, hotel))
+        return true
+      return false
+    })
   }
+
+  private isAMatch(searchBody: SearchBody, hotel: Hotel): boolean {
+    if (
+      hotel.name.toUpperCase().includes(searchBody.name.toUpperCase()) &&
+      //hotel.stars
+      hotel.rate === searchBody.rating &&
+      hotel.price <= searchBody.price
+    ) {
+      return true
+    }
+    return false
+  }
+
 }

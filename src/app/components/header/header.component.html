@@ -6,14 +6,14 @@
     <input type="text" [(ngModel)]="searchBody.name" (input)="onSearch()"  placeholder="Buscar por nombre" />
   </div>
   <div class="header-category">
-    <input type="checkbox" [(ngModel)]="searchBody.category[0]" />
-    <input type="checkbox" [(ngModel)]="searchBody.category[1]" />
-    <input type="checkbox" [(ngModel)]="searchBody.category[2]" />
-    <input type="checkbox" [(ngModel)]="searchBody.category[3]" />
-    <input type="checkbox" [(ngModel)]="searchBody.category[4]" />
+    <input type="checkbox" value="1" [(ngModel)]="searchBody.category[0]" />
+    <input type="checkbox" value="2" [(ngModel)]="searchBody.category[1]" />
+    <input type="checkbox" value="3" [(ngModel)]="searchBody.category[2]" />
+    <input type="checkbox" value="4" [(ngModel)]="searchBody.category[3]" />
+    <input type="checkbox" value="5" [(ngModel)]="searchBody.category[4]" />
   </div>
   <div class="header-rating">
-    <input type="range" min="0" max="5" [(ngModel)]="searchBody.rating" />
+    <input type="range" min="0" max="5" step="0.01" [(ngModel)]="searchBody.rating" />
     <span>{{searchBody.rating}}</span>
   </div>
   <div class="header-price">

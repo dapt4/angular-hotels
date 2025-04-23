@@ -1,5 +1,12 @@
 <ul>
-  @for(hotel of hotels; track hotel.id){
-  <li>{{hotel.name}}</li>
+  @for (hotel of hotels; track hotel.id) {
+    <li>
+      <h3>name: {{ hotel.name }}</h3>
+      <p>img</p>
+      <p>address: {{ hotel.address }}</p>
+      <p>stars: {{ hotel.stars }}</p>
+      <p>rate: {{ hotel.rate }}</p>
+      <p>price: {{ hotel.price }}</p>
+    </li>
   }
 </ul>

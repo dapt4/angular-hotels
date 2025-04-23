@@ -1,8 +1,8 @@
 header {
 display: flex;
-flex-direction: columns;
 justify-content: center;
 	div.header-logo {
+    align-self: flex-start;
 		img {
       width: 30px;
       height: auto;

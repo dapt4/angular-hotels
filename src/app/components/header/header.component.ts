@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   public searchTerms = new Subject<string>();
   public searchBody: SearchBody = {
     name: '',
-    category: [false, false, true, false, false],
+    category: [],
     rating: 3,
     price: 200
   }
