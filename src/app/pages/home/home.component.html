@@ -1,2 +1,4 @@
-<app-header (eventEmiter)="filterHotels($event)" ></app-header>
-<app-grid [hotels]="filteredHotels"></app-grid>
+<section class="home__layout">
+  <app-header (eventEmiter)="filterHotels($event)"></app-header>
+  <app-grid [hotels]="filteredHotels"></app-grid>
+</section>

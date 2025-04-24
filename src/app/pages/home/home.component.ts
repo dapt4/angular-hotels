@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
       this.hotels = await res.json()
       this.filteredHotels = this.hotels
     } catch (err) {
-      //console.error(err) // depende de la politica de la empresa se permite o no mostrar los errores del lado del cliente
+      //console.error(err)
       console.log('Hubo un error interno')
     }
   }
@@ -35,22 +35,49 @@ export class HomeComponent implements OnInit {
   public filterHotels(searchBody: SearchBody) {
     // hago filtro y lo guardo en una propiedad
     this.filteredHotels = this.hotels.filter((hotel) => {
-      if (this.isAMatch(searchBody, hotel))
-        return true
-      return false
+      this.isAMatch(searchBody, hotel)
     })
   }
 
   private isAMatch(searchBody: SearchBody, hotel: Hotel): boolean {
     if (
       hotel.name.toUpperCase().includes(searchBody.name.toUpperCase()) &&
-      //hotel.stars
-      hotel.rate === searchBody.rating &&
+      searchBody.category.includes(hotel.stars) &&
+      hotel.rate >= searchBody.rating &&
       hotel.price <= searchBody.price
     ) {
       return true
     }
     return false
+  }
+
+  private isAMatch(searchBody: SearchBody, hotel: Hotel): boolean {
+    let result = false;
+    if (
+      searchBody.name != "" &&
+      hotel.name.toUpperCase().includes(searchBody.name.toUpperCase())
+    ) {
+      result = true
+    }
+    if (
+      searchBody.category.length > 0 &&
+      searchBody.category.includes(hotel.stars)
+    ) {
+      result = true
+    }
+    if (
+      searchBody.rating >= 0 &&
+      hotel.rate >= searchBody.rating
+    ) {
+      result = true
+    }
+    if (
+      searchBody.price > 0 &&
+      hotel.price <= searchBody.price
+    ) {
+      return true
+    }
+    return result
   }
 
 }

@@ -1,28 +1,68 @@
 <header>
-  <div class="header-logo">
-    <img src="assets/logoo.svg" alt="logo" />
+  <div class="header__top">
+    <div class="header-logo">
+      <img src="assets/logoo.svg" alt="logo" />
+    </div>
+    <div class="header-finder">
+      <input
+        type="text"
+        [(ngModel)]="searchBody.name"
+        (input)="onSearch()"
+        placeholder="Buscar por nombre"
+      />
+    </div>
   </div>
-  <div class="header-finder">
-    <input type="text" [(ngModel)]="searchBody.name" (input)="onSearch()"  placeholder="Buscar por nombre" />
+  <div class="header__middle">
+    <span> Filters: </span>
+    <div class="header-category">
+      <label for="">Stars: </label>
+      <div class="header-group">
+        <label for="s1">1{{ searchBody.category.includes(1) ? '⭐' : '☆' }}</label>
+        <input id="s1" type="checkbox" (input)="toggleStars($event, 1)" />
+      </div>
+      <div class="header-group">
+        <label for="s2">2{{ searchBody.category.includes(2) ? '⭐' : '☆' }}</label>
+        <input id="s2" type="checkbox" (input)="toggleStars($event, 2)" />
+      </div>
+      <div class="header-group">
+        <label for="s3">3{{ searchBody.category.includes(3) ? '⭐' : '☆' }}</label>
+        <input id="s3" type="checkbox" (input)="toggleStars($event, 3)" />
+      </div>
+      <div class="header-group">
+        <label for="s4">4{{ searchBody.category.includes(4) ? '⭐' : '☆' }}</label>
+        <input id="s4" type="checkbox" (input)="toggleStars($event, 4)" />
+      </div>
+      <div class="header-group">
+        <label for="s5">5{{ searchBody.category.includes(5) ? '⭐' : '☆' }}</label>
+        <input id="s5" type="checkbox" (input)="toggleStars($event, 5)" />
+      </div>
+    </div>
   </div>
-  <div class="header-category">
-    <input type="checkbox" value="1" [(ngModel)]="searchBody.category[0]" />
-    <input type="checkbox" value="2" [(ngModel)]="searchBody.category[1]" />
-    <input type="checkbox" value="3" [(ngModel)]="searchBody.category[2]" />
-    <input type="checkbox" value="4" [(ngModel)]="searchBody.category[3]" />
-    <input type="checkbox" value="5" [(ngModel)]="searchBody.category[4]" />
+  <div class="header__bottom">
+    <div class="header-rating">
+      <label for="rating">Rating</label>
+      <input
+        id="rating"
+        type="range"
+        min="0"
+        max="5"
+        step="0.1"
+        [(ngModel)]="searchBody.rating"
+        (ngModelChange)="sendFilters()"
+      />
+      <span>{{ searchBody.rating }}%</span>
+    </div>
+    <div class="header-price">
+      <label for="price">Price</label>
+      <input
+        id="price"
+        type="range"
+        min="50"
+        max="1000"
+        [(ngModel)]="searchBody.price"
+        (ngModelChange)="sendFilters()"
+      />
+      <span>{{ searchBody.price }}€</span>
+    </div>
   </div>
-  <div class="header-rating">
-    <input type="range" min="0" max="5" step="0.01" [(ngModel)]="searchBody.rating" />
-    <span>{{searchBody.rating}}</span>
-  </div>
-  <div class="header-price">
-    <input type="range" min="50" max="1000" [(ngModel)]="searchBody.price" />
-    <span>{{searchBody.price}}</span>
-  </div>
-  <pre>
-    {{
-      searchBody | json
-    }}
-  </pre>
 </header>

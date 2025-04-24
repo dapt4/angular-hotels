@@ -31,7 +31,18 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  public onSearch(){
+  public toggleStars(event: Event, star: number): void {
+    const input = event.target as HTMLInputElement;
+    if(input.checked){
+      this.searchBody.category.push(star)
+    } else {
+      const index = this.searchBody.category.indexOf(star)
+      this.searchBody.category.splice(index, 1)
+    }
+    this.sendFilters()
+  }
+
+  public onSearch() {
     this.searchTerms.next(this.searchBody.name);
   }
 
