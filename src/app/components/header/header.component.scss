@@ -21,12 +21,10 @@ header {
 
     div.header-finder {
       align-self: center;
-      flex-grow: 3;
       width: 100%;
 
       input {
         width: inherit;
-        // max-width: 95%;
         padding: 10px 10px;
         border-radius: 10px;
         border: 1px solid var(--c-gray2);
@@ -36,20 +34,32 @@ header {
   }
 
   .header__middle {
-    @media (min-width: 0px) {}
-
     display: flex;
-    width: 40%;
+    width: 100%;
     justify-content: center;
     align-items: center;
     background-color: lighten($color: #ccc, $amount: 10);
     padding: 7px 20px;
     gap: 20px;
 
+    @media (min-width: 600px) {
+      width: 50%;
+    }
+    span.title{
+      font-weight: 600;
+      font-size: 1.2em;
+    }
     div.header-category {
       .header-group {
-        display: inline;
+        display: inline-block;
         width: fit-content;
+        margin-left: 10px;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: var(--c-gray);
+        &:hover{
+          background-color: var(--c-secondary);
+        }
 
         label {
           cursor: pointer;
@@ -64,21 +74,36 @@ header {
 
   .header__bottom {
     display: flex;
-    width: 40%;
+    width: 100%;
     justify-content: center;
     align-items: center;
     background-color: lighten($color: #ccc, $amount: 15);
     padding: 7px 20px;
     gap: 20px;
 
-    div.header-rating {
+    @media (min-width: 600px) {
+      width: 50%;
+    }
 
-      input {}
+    div.header-rating {
+      label {
+        display: block;
+      }
+
+      input {
+        width: 70%;
+        background: red;
+      }
     }
 
     div.header-price {
+      label {
+        display: block;
+      }
 
-      input {}
+      input {
+        width: 70%;
+      }
     }
 
   }

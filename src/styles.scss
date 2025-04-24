@@ -1,8 +1,8 @@
 :root {
   --c-primary: #2C3673;
-  --c-secundary: #F28749;
+  --c-secondary: #F28749;
   --c-primary2: #2D3E73;
-  --c-secundary2: #F2784B;
+  --c-secondary2: #F2784B;
   --c-white: #fff;
   --c-gray: #ccc;
   --c-gray2: gray;
@@ -15,4 +15,5 @@ body {
 
 *{
   box-sizing: border-box;
+  font-family: Arial, Helvetica, Liberation Sans, sans-serif;
 }

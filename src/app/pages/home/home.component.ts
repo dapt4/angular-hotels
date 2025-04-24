@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵɵpureFunction0 } from '@angular/core';
 import { GridComponent } from '@root/app/components/grid/grid.component';
 import { HeaderComponent } from '@root/app/components/header/header.component';
 import { Hotel } from '@root/app/types/hotel.type';
@@ -33,51 +33,91 @@ export class HomeComponent implements OnInit {
   }
 
   public filterHotels(searchBody: SearchBody) {
-    // hago filtro y lo guardo en una propiedad
-    this.filteredHotels = this.hotels.filter((hotel) => {
+    this.filteredHotels = this.hotels.filter((hotel) =>
       this.isAMatch(searchBody, hotel)
-    })
+    )
   }
 
-  private isAMatch(searchBody: SearchBody, hotel: Hotel): boolean {
-    if (
-      hotel.name.toUpperCase().includes(searchBody.name.toUpperCase()) &&
-      searchBody.category.includes(hotel.stars) &&
-      hotel.rate >= searchBody.rating &&
-      hotel.price <= searchBody.price
-    ) {
-      return true
-    }
-    return false
-  }
+  //private isAMatch(searchBody: SearchBody, hotel: Hotel): boolean {
+  //  let result = false;
+  //  if (
+  //    searchBody.name != "" &&
+  //    hotel.name.toUpperCase().includes(searchBody.name.toUpperCase())
+  //  ) {
+  //    result = true
+  //  }
+  //  if (
+  //    searchBody.category.length > 0 &&
+  //    searchBody.category.includes(hotel.stars)
+  //  ) {
+  //    result = true
+  //  }
+  //  if (
+  //    searchBody.rating != null &&
+  //    hotel.rate >= searchBody.rating
+  //  ) {
+  //    result = true
+  //  }
+  //  if (
+  //    searchBody.price != null &&
+  //    hotel.price <= searchBody.price
+  //  ) {
+  //    result = true
+  //  }
+  //  return result
+  //}
+
+  //private isAMatch(searchBody: SearchBody, hotel: Hotel): boolean {
+  //  let result = false;
+  //  if (
+  //    (searchBody.name != "" &&
+  //      hotel.name.toUpperCase().includes(searchBody.name.toUpperCase()))
+  //    || searchBody.name === "" &&
+  //
+  //    (searchBody.category.length > 0 &&
+  //      searchBody.category.includes(hotel.stars))
+  //    || searchBody.category.length === 0 &&
+  //
+  //    (searchBody.rating != null &&
+  //      hotel.rate >= searchBody.rating)
+  //    || searchBody.rating === null &&
+  //
+  //    (searchBody.price != null &&
+  //      hotel.price <= searchBody.price)
+  //    || searchBody.price === null
+  //  ) {
+  //    result = true
+  //  }
+  //  return result
+  //}
+
 
   private isAMatch(searchBody: SearchBody, hotel: Hotel): boolean {
-    let result = false;
-    if (
-      searchBody.name != "" &&
-      hotel.name.toUpperCase().includes(searchBody.name.toUpperCase())
-    ) {
-      result = true
+    if (searchBody.name !== "") {
+      if (!hotel.name.toUpperCase().includes(searchBody.name.toUpperCase())) {
+        return false;
+      }
     }
-    if (
-      searchBody.category.length > 0 &&
-      searchBody.category.includes(hotel.stars)
-    ) {
-      result = true
+
+    if (searchBody.category.length > 0) {
+      if (!searchBody.category.includes(hotel.stars)) {
+        return false;
+      }
     }
-    if (
-      searchBody.rating >= 0 &&
-      hotel.rate >= searchBody.rating
-    ) {
-      result = true
+
+    if (searchBody.rating != null) {
+      if (hotel.rate < searchBody.rating) {
+        return false;
+      }
     }
-    if (
-      searchBody.price > 0 &&
-      hotel.price <= searchBody.price
-    ) {
-      return true
+
+    if (searchBody.price != null) {
+      if (hotel.price > searchBody.price) {
+        return false;
+      }
     }
-    return result
+
+    return true;
   }
 
 }

@@ -17,8 +17,8 @@ export class HeaderComponent implements OnInit {
   public searchBody: SearchBody = {
     name: '',
     category: [],
-    rating: 3,
-    price: 200
+    rating: null,
+    price: null
   }
 
   ngOnInit() {
