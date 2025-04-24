@@ -38,60 +38,6 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  //private isAMatch(searchBody: SearchBody, hotel: Hotel): boolean {
-  //  let result = false;
-  //  if (
-  //    searchBody.name != "" &&
-  //    hotel.name.toUpperCase().includes(searchBody.name.toUpperCase())
-  //  ) {
-  //    result = true
-  //  }
-  //  if (
-  //    searchBody.category.length > 0 &&
-  //    searchBody.category.includes(hotel.stars)
-  //  ) {
-  //    result = true
-  //  }
-  //  if (
-  //    searchBody.rating != null &&
-  //    hotel.rate >= searchBody.rating
-  //  ) {
-  //    result = true
-  //  }
-  //  if (
-  //    searchBody.price != null &&
-  //    hotel.price <= searchBody.price
-  //  ) {
-  //    result = true
-  //  }
-  //  return result
-  //}
-
-  //private isAMatch(searchBody: SearchBody, hotel: Hotel): boolean {
-  //  let result = false;
-  //  if (
-  //    (searchBody.name != "" &&
-  //      hotel.name.toUpperCase().includes(searchBody.name.toUpperCase()))
-  //    || searchBody.name === "" &&
-  //
-  //    (searchBody.category.length > 0 &&
-  //      searchBody.category.includes(hotel.stars))
-  //    || searchBody.category.length === 0 &&
-  //
-  //    (searchBody.rating != null &&
-  //      hotel.rate >= searchBody.rating)
-  //    || searchBody.rating === null &&
-  //
-  //    (searchBody.price != null &&
-  //      hotel.price <= searchBody.price)
-  //    || searchBody.price === null
-  //  ) {
-  //    result = true
-  //  }
-  //  return result
-  //}
-
-
   private isAMatch(searchBody: SearchBody, hotel: Hotel): boolean {
     if (searchBody.name !== "") {
       if (!hotel.name.toUpperCase().includes(searchBody.name.toUpperCase())) {
