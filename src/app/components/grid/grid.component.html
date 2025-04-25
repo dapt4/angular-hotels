@@ -1,6 +1,11 @@
+<div class="pager">
+  <button (click)="decrease()"><</button>
+  <span>{{ page }} - {{ totalPages }} </span>
+  <button (click)="increase()">></button>
+</div>
 <section class="articles">
   @for (hotel of hotels; track hotel.id) {
-    <article>
+  <article [ngClass]="{hide: getPage() != page}">
       <div class="article-wrapper">
         <figure>
           <img src="{{ hotel.image }}" alt="foto" />
@@ -19,3 +24,8 @@
     </article>
   }
 </section>
+<div class="pager">
+  <button (click)="decrease()"><</button>
+  <span>{{ page }} - {{ totalPages }} </span>
+  <button (click)="increase()">></button>
+</div>
