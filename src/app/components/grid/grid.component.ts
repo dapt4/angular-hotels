@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {  Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Hotel } from '@root/app/types/hotel.type';
 
 @Component({
@@ -11,53 +11,47 @@ import { Hotel } from '@root/app/types/hotel.type';
 })
 export class GridComponent implements OnInit {
   @Input() hotels: Hotel[] = [];
-  private generator!: Iterator<number>;
-  public page = 1;
-  public totalPages!: number;
 
-constructor(){}
+  public page = 1;
+  public totalPages = 1;
+  public itemsPerPage = 10;
+  public displayedHotels: Hotel[] = [];
+
+  constructor() { }
 
   ngOnInit(): void {
-    this.startPage()
+    this.calculateTotalPages();
+    this.updateDisplayedHotels();
   }
 
-  public startPage(): void {
-    this.generator = this.genPage()
+  ngOnChanges(): void {
+    this.calculateTotalPages();
+    this.updateDisplayedHotels();
   }
 
-  public getPage() {
-    let val = this.generator.next().value
-    console.log(val)
-    return val
+  private calculateTotalPages(): void {
+    this.totalPages = Math.ceil(this.hotels.length / this.itemsPerPage);
+    if (this.totalPages === 0) this.totalPages = 1;
+  }
+
+  private updateDisplayedHotels(): void {
+    const startIndex = (this.page - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.displayedHotels = this.hotels.slice(startIndex, endIndex);
   }
 
   public increase() {
-    if(this.page +1 > this.totalPages) return this.startPage()
+    if (this.page < this.totalPages){
     this.page += 1
-    this.startPage()
+    this.updateDisplayedHotels()
+    }
   }
 
   public decrease() {
-    if (this.page - 1 === 0) {
-      this.startPage()
-      return;
+    if (this.page > 1) {
+      this.page -= 1;
+      this.updateDisplayedHotels()
     }
-    this.page -= 1;
-    this.startPage()
   }
 
-  private *genPage() {
-    let page = 1;
-    let index = 0;
-    let topValue = 9;
-    while (true) {
-      if (index > topValue) {
-        topValue += 10
-        page += 1
-        this.totalPages = page
-      }
-      index += 1
-      yield page;
-    }
-  }
 }

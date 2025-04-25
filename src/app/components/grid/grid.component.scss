@@ -14,9 +14,6 @@ section.articles {
     transform-origin: center;
     transition: all 0.4s ease-in-out;
     overflow: hidden;
-    &.hide{
-      display: none;
-    }
 
     &:has(:hover, :focus) {
       --img-scale: 1.1;

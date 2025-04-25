@@ -1,11 +1,11 @@
 <div class="pager">
-  <button (click)="decrease()"><</button>
-  <span>{{ page }} - {{ totalPages }} </span>
-  <button (click)="increase()">></button>
+  <button (click)="decrease()" [disabled]="page === 1">&lt;</button>
+  <span>{{ page }} / {{ totalPages }}</span>
+  <button (click)="increase()" [disabled]="page === totalPages">&gt;</button>
 </div>
 <section class="articles">
-  @for (hotel of hotels; track hotel.id) {
-  <article [ngClass]="{hide: getPage() != page}">
+  @for (hotel of displayedHotels; track hotel.id) {
+    <article>
       <div class="article-wrapper">
         <figure>
           <img src="{{ hotel.image }}" alt="foto" />
@@ -17,7 +17,7 @@
           <p><span>Rate:</span> {{ hotel.rate }}</p>
           <p><span>Price:</span> {{ hotel.price }}</p>
           <div class="article-btnbox">
-            <button class="read-more"> Read more </button>
+            <button class="read-more">Read more</button>
           </div>
         </div>
       </div>
@@ -25,7 +25,7 @@
   }
 </section>
 <div class="pager">
-  <button (click)="decrease()"><</button>
-  <span>{{ page }} - {{ totalPages }} </span>
-  <button (click)="increase()">></button>
+  <button (click)="decrease()" [disabled]="page === 1">&lt;</button>
+  <span>{{ page }} / {{ totalPages }}</span>
+  <button (click)="increase()" [disabled]="page === totalPages">&gt;</button>
 </div>
