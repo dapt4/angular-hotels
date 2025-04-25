@@ -1,12 +1,21 @@
-<ul>
+<section class="articles">
   @for (hotel of hotels; track hotel.id) {
-    <li>
-      <h3>name: {{ hotel.name }}</h3>
-      <p>img</p>
-      <p>address: {{ hotel.address }}</p>
-      <p>stars: {{ hotel.stars }}</p>
-      <p>rate: {{ hotel.rate }}</p>
-      <p>price: {{ hotel.price }}</p>
-    </li>
+    <article>
+      <div class="article-wrapper">
+        <figure>
+          <img src="{{ hotel.image }}" alt="foto" />
+        </figure>
+        <div class="article-body">
+          <h2>{{ hotel.name }}</h2>
+          <p><span>Address:</span> {{ hotel.address }}</p>
+          <p><span>Stars:</span> {{ hotel.stars }}⭐</p>
+          <p><span>Rate:</span> {{ hotel.rate }}</p>
+          <p><span>Price:</span> {{ hotel.price }}</p>
+          <div class="article-btnbox">
+            <button class="read-more"> Read more </button>
+          </div>
+        </div>
+      </div>
+    </article>
   }
-</ul>
+</section>

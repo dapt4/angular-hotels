@@ -3,17 +3,21 @@
   --c-secondary: #F28749;
   --c-primary2: #2D3E73;
   --c-secondary2: #F2784B;
+  --c-tertiary: #2cc3ff;
   --c-white: #fff;
   --c-gray: #ccc;
   --c-gray2: gray;
   --c-black: #000;
 }
 
-body {
-  margin: 0px;
-}
-
-*{
+* {
   box-sizing: border-box;
   font-family: Arial, Helvetica, Liberation Sans, sans-serif;
+}
+
+body {
+  margin: 0px;
+  height: 100%;
+  background: linear-gradient(90deg, #2C3673, #2cc3ff);
+  min-height: 100vh;
 }

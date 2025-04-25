@@ -14,11 +14,18 @@ import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 export class HeaderComponent implements OnInit {
   @Output() eventEmiter = new EventEmitter<SearchBody>();
   public searchTerms = new Subject<string>();
-  public searchBody: SearchBody = {
+  public initBody: SearchBody = {
     name: '',
     category: [],
     rating: null,
     price: null
+  }
+
+  public searchBody: SearchBody = { ...this.initBody, category: [...this.initBody.category] };
+
+  public clean(): void {
+    this.searchBody = { ...this.initBody, category: [...this.initBody.category] };
+    this.sendFilters()
   }
 
   ngOnInit() {
@@ -33,7 +40,7 @@ export class HeaderComponent implements OnInit {
 
   public toggleStars(event: Event, star: number): void {
     const input = event.target as HTMLInputElement;
-    if(input.checked){
+    if (input.checked) {
       this.searchBody.category.push(star)
     } else {
       const index = this.searchBody.category.indexOf(star)
@@ -42,11 +49,11 @@ export class HeaderComponent implements OnInit {
     this.sendFilters()
   }
 
-  public onSearch() {
+  public onSearch(): void {
     this.searchTerms.next(this.searchBody.name);
   }
 
-  public sendFilters() {
+  public sendFilters(): void {
     this.eventEmiter.emit(this.searchBody);
   }
 
