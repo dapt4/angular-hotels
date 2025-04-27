@@ -1,7 +1,7 @@
-<div class="pager">
+<div class="turn-pages">
   <button (click)="decrease()" [disabled]="page === 1">&lt;</button>
   <span>{{ page }} / {{ totalPages }}</span>
-  <button (click)="increase()" [disabled]="page === totalPages">&gt;</button>
+  <button class="next" (click)="increase()" [disabled]="page === totalPages">&gt;</button>
 </div>
 <section class="articles">
   @for (hotel of displayedHotels; track hotel.id) {
@@ -24,8 +24,8 @@
     </article>
   }
 </section>
-<div class="pager">
+<div class="turn-pages">
   <button (click)="decrease()" [disabled]="page === 1">&lt;</button>
   <span>{{ page }} / {{ totalPages }}</span>
-  <button (click)="increase()" [disabled]="page === totalPages">&gt;</button>
+  <button class="next" (click)="increase()" [disabled]="page === totalPages">&gt;</button>
 </div>

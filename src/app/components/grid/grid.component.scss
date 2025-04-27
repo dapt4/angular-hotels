@@ -82,3 +82,35 @@ section.articles {
     }
   }
 }
+
+.turn-pages{
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  button{
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: var(--c-secondary);
+    border-radius: 5px 0px 0px 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+    &.next{
+      border-radius: 0px 5px 5px 0px;
+    }
+    &:hover{
+      background-color: lighten($color: #F28749, $amount: 5);
+      color: var(--c-white);
+    }
+  }
+  span{
+    display:flex;
+    width: fit-content;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--c-gray);
+    padding: 0px 10px;
+  }
+}
